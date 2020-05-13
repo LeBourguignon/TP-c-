@@ -1,13 +1,15 @@
 #pragma once
 #include "Controller.h"
-#include "View-menu.h"
+#include "View-LoadImage.h"
+#include "View-MenuImage.h"
 
 class Application
 {
 private:
 	Controller controller;
-	ViewMenu viewMenu;
-
+	ViewLoadImage viewLoadImage;
+	ViewMenuImage viewMenuImage;
+	
 public:
 	/**
 	 * Constructor

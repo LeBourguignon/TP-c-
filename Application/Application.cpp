@@ -4,7 +4,7 @@
  * Constructor
  */
 Application::Application()
-    : controller(), viewMenu(controller)
+    : controller(), viewLoadImage(controller), viewMenuImage(controller)
 {
 }
 

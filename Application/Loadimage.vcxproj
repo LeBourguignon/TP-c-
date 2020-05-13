@@ -157,7 +157,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Subject.cpp" />
-    <ClCompile Include="View-Menu.cpp" />
+    <ClCompile Include="View-LoadImage.cpp" />
+    <ClCompile Include="View-MenuImage.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +166,8 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Subject.h" />
-    <ClInclude Include="View-Menu.h" />
+    <ClInclude Include="View-LoadImage.h" />
+    <ClInclude Include="View-MenuImage.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

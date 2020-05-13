@@ -3,17 +3,16 @@
 #include "View.h"
 #include "Controller.h"
 
-class ViewMenu : public View
+class ViewLoadImage: public View
 {
 private:
-	// Controller of the application
 	Controller& controller;
 public:
 	/**
 	 * Constructor
 	 * @param _controller Application controller
 	 */
-	ViewMenu(Controller& _controller);
+	ViewLoadImage(Controller& _controller);
 
 	/**
 	 * Notification function of the view
@@ -25,3 +24,4 @@ public:
 	 */
 	virtual void display();
 };
+
