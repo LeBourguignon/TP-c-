@@ -4,7 +4,7 @@
  * Constructor
  */
 Controller::Controller()
-    : Subject(), currentScreen(0)
+    : Subject(), currentScreen(10), image(Image())
 {
     
 }
@@ -27,4 +27,40 @@ void Controller::setScreen(const int& value)
 int Controller::getCurrentScreen()
 {
     return currentScreen;
+}
+
+//Fonction Image:
+void Controller::setAddressSource(std::string _addressSource)
+{
+    image.setAddressSource(_addressSource);
+}
+
+void Controller::setAddressGhost(std::string _addressGhost)
+{
+    image.setAddressGhost(_addressGhost);
+}
+
+std::string Controller::getAddressSource()
+{
+    return image.getAddressSource();
+}
+
+std::string Controller::getAddressGhost()
+{
+    return image.getAddressGhost();
+}
+
+int Controller::testAddressSource()
+{
+    return image.testAddressSource();
+}
+
+int Controller::testAddressGhost()
+{
+    return image.testAddressGhost();
+}
+
+void Controller::showImageSource()
+{
+    image.showImageSource();
 }

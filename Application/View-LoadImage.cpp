@@ -16,7 +16,7 @@ ViewLoadImage::ViewLoadImage(Controller& _controller)
  */
 void ViewLoadImage::notify()
 {
-	if (controller.getCurrentScreen() == 0)
+	if (controller.getCurrentScreen() == 10)
 		display();
 }
 
@@ -25,16 +25,19 @@ void ViewLoadImage::notify()
  */
 void ViewLoadImage::display()
 {
-    clear();
-    View::display();
-
-    std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:\mon-image.jpg) : ";
-
-    std::string address;
+    std::string addressSource;
+ 
     do
     {
-        std::cin.clear();
-        std::cin >> address;
+        clear();
+        View::display();
+        std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:/mon-image.jpg) : ";
 
-    } while ();
+        std::cin.clear();
+        std::cin >> addressSource;
+        controller.setAddressSource(addressSource);
+    } while (!controller.testAddressSource());
+
+    controller.showImageSource(); //Executer cette ligne en multithreading!!!
+    controller.setScreen(0);
 }

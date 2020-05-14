@@ -3,7 +3,7 @@
 using namespace cv;
 
 Image::Image(std::string _address)
-	:	address(_address)
+	:	addressSource(_address)
 {
 
 }

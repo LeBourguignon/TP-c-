@@ -15,10 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Image.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Images.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Image.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Images.h" />
   </ItemGroup>
 </Project>

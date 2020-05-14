@@ -8,8 +8,7 @@ private:
 	//ID of the current screnn to display
 	int currentScreen;
 
-	//Collection of complaints
-	Images images;
+	Image image;
 
 public:
 	/**
@@ -27,4 +26,16 @@ public:
 	 * Returns the id of the current displayed screen
 	 */
 	int getCurrentScreen();
+
+	//Fonction Image:
+	void setAddressSource(std::string _addressSource);
+	void setAddressGhost(std::string _addressGhost);
+	
+	std::string getAddressSource();
+	std::string getAddressGhost();
+
+	int testAddressSource();
+	int testAddressGhost();
+
+	void showImageSource();
 };
