@@ -33,7 +33,6 @@ void ViewLoadImage::display()
     {
         clear();
         View::display();
-<<<<<<< HEAD
         if (w == 0)
         {
             std::cout << std::endl;
@@ -43,9 +42,6 @@ void ViewLoadImage::display()
             std::cout << "\tImpossible d'ouvrir ou de trouver l'image!" << std::endl;
         }
         std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:/mon-image.jpg) : ";
-=======
-        std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:\mon-image.jpg) : ";
->>>>>>> 65286d77726d06a4d852d6d2be2f3808b58d8fba
 
         std::cin.clear();
         std::cin >> addressSource;
