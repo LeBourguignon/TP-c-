@@ -50,14 +50,9 @@ std::string Controller::getAddressGhost()
     return image.getAddressGhost();
 }
 
-int Controller::testAddressSource()
+int Controller::testAddress(std::string _address)
 {
-    return image.testAddressSource();
-}
-
-int Controller::testAddressGhost()
-{
-    return image.testAddressGhost();
+    return image.testAddress(_address);
 }
 
 void Controller::showImageSource()

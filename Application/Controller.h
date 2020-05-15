@@ -34,8 +34,7 @@ public:
 	std::string getAddressSource();
 	std::string getAddressGhost();
 
-	int testAddressSource();
-	int testAddressGhost();
+	int testAddress(std::string _address);
 
 	void showImageSource();
 };

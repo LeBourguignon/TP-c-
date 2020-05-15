@@ -1,12 +1,15 @@
 #pragma once
 #include <opencv2/opencv.hpp>
 #include <string>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 class Image
 {
 private:
 	std::string addressSource;
 	std::string addressGhost;
+
 
 public:
 	Image();
@@ -17,8 +20,9 @@ public:
 	std::string getAddressSource();
 	std::string getAddressGhost();
 
-	int testAddressSource();
-	int testAddressGhost();
+	int testAddress(std::string _address);
 
 	void showImageSource();
+	
+	void imRGBtoGray(std::string _adresse);
 };
