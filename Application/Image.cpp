@@ -46,6 +46,8 @@ int Image::testAddressSource()
 int Image::testAddressGhost()
 {
 	Mat img = imread(addressGhost);
+
+
 	if (img.empty())
 	{
 		std::cout << "\tImpossible d'ouvrir ou de trouver l'image!" << std::endl;
@@ -64,4 +66,11 @@ void Image::showImageSource()
 	namedWindow("Image d'origine", WINDOW_NORMAL);
 	imshow("Image d'origine", img);
 	waitKey(0);
+}
+
+void Image::imRGBtoGray(std::string _adresse)
+{
+	Mat im_rgb = imread(_adresse);
+	Mat im_gray;
+	cvtColor(im_rgb, im_gray, 7 );
 }

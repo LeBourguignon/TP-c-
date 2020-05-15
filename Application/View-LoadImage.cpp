@@ -31,7 +31,7 @@ void ViewLoadImage::display()
     {
         clear();
         View::display();
-        std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:/mon-image.jpg) : ";
+        std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:\mon-image.jpg) : ";
 
         std::cin.clear();
         std::cin >> addressSource;
