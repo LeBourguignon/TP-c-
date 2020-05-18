@@ -25,4 +25,8 @@ public:
 	void showImageSource();
 	
 	void imRGBtoGray(std::string _adresse);
+
+	int filtregauss(InputArray _adresseSrc, 	OutputArray _adresseDest, int _i);
+
+	int  filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksize);
 };

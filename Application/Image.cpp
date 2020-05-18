@@ -62,3 +62,25 @@ void Image::imRGBtoGray(std::string _adresse)
 	Mat im_gray;
 	cvtColor(im_rgb, im_gray, 7 );
 }
+
+int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)
+{
+	int i = _i;
+	for (int i; i < MAX_KERNEL_LENGTH; i = i + 2) {
+
+		GaussianBlur(_adresseSrc, _adresseDest, Size(i, i), 0, 0);
+
+	}
+	return 0;
+}
+
+int Image::filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksize)
+{
+	int ksize = _ksize;
+	for (int ksize; ksize < MAX_KERNEL_LENGTH; ksize = ksize + 2) {
+
+		medianBlur(_adresseSrc, _adresseDest, ksize);
+
+	}
+}
+
