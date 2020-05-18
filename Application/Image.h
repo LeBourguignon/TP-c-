@@ -26,7 +26,7 @@ public:
 	
 	void imRGBtoGray(std::string _adresse);
 
-	int filtregauss(InputArray _adresseSrc, 	OutputArray _adresseDest, int _i);
+	int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
 
-	int  filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksize);
+	int filtremed(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _ksize);
 };
