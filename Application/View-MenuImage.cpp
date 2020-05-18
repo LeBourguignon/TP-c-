@@ -6,7 +6,7 @@
  * @param _controller Application controller
  */
 ViewMenuImage::ViewMenuImage(Controller& _controller)
-    : View("Menu Image"), controller(_controller)
+    : View("Menu des traitements de l'image"), controller(_controller)
 {
     controller.addObserver(this);
 }
@@ -27,14 +27,32 @@ void ViewMenuImage::display()
 {
     clear();
     View::display();
-    std::cout << "\tOption de filtre: bientot disponible..." << std::endl;
-    std::cout << "\t---------------------------------------" << std::endl;
+
+    std::cout << "\tFiltrage :" << std::endl;
+    std::cout << "\t\t1. Filtre median" << std::endl;
+    std::cout << "\t\t2. Filtre gaussien" << std::endl << std::endl;
+
+    std::cout << "\tDerivation :" << std::endl;
+    std::cout << "\t\t3. Calcul du gradient dans une image ( Sobel )" << std::endl << std::endl << std::endl;
+
+    std::cout << "\tOperations de morphologie mathematique :" << std::endl;
+    std::cout << "\t\t4. Dilatation" << std::endl;
+    std::cout << "\t\t5. Erosion" << std::endl << std::endl;
+
+    std::cout << "\tDetection de contours :" << std::endl;
+    std::cout << "\t\t6. Application d'un detecteur de contours \"Canny\"" << std::endl << std::endl << std::endl;
+
+    std::cout << "\tSegmentations d'images :" << std::endl;
+    std::cout << "\t\t7. Operations de seuillages" << std::endl;
+    std::cout << "\t\t8. Segmentation par croissance de region" << std::endl << std::endl;
+
+    std::cout << "\t-----------------------------------------------------------" << std::endl;
     std::cout << "\t9. Quitter" << std::endl;
     std::cout << std::endl;
 
-    int res;
+    int x;
     std::cin.clear();
-    std::cin >> res;
+    std::cin >> x;
 
-    controller.setScreen(res);
+    controller.setScreen(x);
 }

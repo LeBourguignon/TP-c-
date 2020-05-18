@@ -1,9 +1,9 @@
 #pragma once
-#include "Observer.h"
 #include "View.h"
 #include "Controller.h"
+#include "Observer.h"
 
-class ViewLoadImage: public View
+class View4 : public View
 {
 private:
 	// Controller of the application
@@ -13,7 +13,7 @@ public:
 	 * Constructor
 	 * @param _controller Application controller
 	 */
-	ViewLoadImage(Controller& _controller);
+	View4(Controller& _controller);
 
 	/**
 	 * Notification function of the view
@@ -25,4 +25,3 @@ public:
 	 */
 	virtual void display();
 };
-

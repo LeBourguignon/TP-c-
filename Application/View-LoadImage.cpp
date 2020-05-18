@@ -1,6 +1,5 @@
 #include "View-LoadImage.h"
 #include <iostream>
-#include <thread>
 
 /**
  * Constructor
