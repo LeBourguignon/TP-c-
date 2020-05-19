@@ -1,10 +1,12 @@
 #include "Controller.h"
 
+using namespace cv;
+
 /**
  * Constructor
  */
 Controller::Controller()
-    : Subject(), currentScreen(10), image(Image())
+    : Subject(), currentScreen(10), img(imread(""))
 {
     
 }
@@ -30,32 +32,18 @@ int Controller::getCurrentScreen()
 }
 
 //Fonction Image:
-void Controller::setAddressSource(std::string _addressSource)
+void Controller::setAddress(std::string _address)
 {
-    image.setAddressSource(_addressSource);
-}
-
-void Controller::setAddressGhost(std::string _addressGhost)
-{
-    image.setAddressGhost(_addressGhost);
-}
-
-std::string Controller::getAddressSource()
-{
-    return image.getAddressSource();
-}
-
-std::string Controller::getAddressGhost()
-{
-    return image.getAddressGhost();
+    img = imread(_address);
 }
 
 int Controller::testAddress(std::string _address)
 {
-    return image.testAddress(_address);
+    Mat imgTest = imread(_address);
+    return testAddressI(imgTest);
 }
 
-void Controller::showImageSource()
+void Controller::updateImage(std::string _namedWindow)
 {
-    image.showImageSource();
+    showImageThread(img, _namedWindow);
 }

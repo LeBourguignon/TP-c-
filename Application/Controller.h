@@ -8,7 +8,7 @@ private:
 	//ID of the current screnn to display
 	int currentScreen;
 
-	Image image;
+	cv::Mat img;
 
 public:
 	/**
@@ -28,13 +28,9 @@ public:
 	int getCurrentScreen();
 
 	//Fonction Image:
-	void setAddressSource(std::string _addressSource);
-	void setAddressGhost(std::string _addressGhost);
-	
-	std::string getAddressSource();
-	std::string getAddressGhost();
+	void setAddress(std::string _address);
 
 	int testAddress(std::string _address);
 
-	void showImageSource();
+	void updateImage(std::string _namedWindow);
 };

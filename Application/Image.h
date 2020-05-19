@@ -4,29 +4,14 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-class Image
-{
-private:
-	std::string addressSource;
-	std::string addressGhost;
+int testAddressI(cv::Mat _img);
 
-
-public:
-	Image();
-
-	void setAddressSource(std::string _addressSource);
-	void setAddressGhost(std::string _addressGhost);
+void showImageThread(cv::Mat _img, std::string _namedWindow);
 	
-	std::string getAddressSource();
-	std::string getAddressGhost();
+cv::Mat imRGBtoGray(cv::Mat _img);
 
-	int testAddress(std::string _address);
+/*
+int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
 
-	void showImageSource();
-	
-	void imRGBtoGray(std::string _adresse);
-
-	int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
-
-	int filtremed(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _ksize);
-};
+int filtremed(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _ksize);
+*/

@@ -3,36 +3,9 @@
 
 using namespace cv;
 
-Image::Image()
-	:	addressSource(""), addressGhost("")
+int testAddressI(Mat _img)
 {
-
-}
-
-void Image::setAddressSource(std::string _addressSource)
-{
-	addressSource = _addressSource;
-}
-
-void Image::setAddressGhost(std::string _addressGhost)
-{
-	addressGhost = _addressGhost;
-}
-
-std::string Image::getAddressSource()
-{
-	return addressSource;
-}
-
-std::string Image::getAddressGhost()
-{
-	return addressGhost;
-}
-
-int Image::testAddress(std::string _address)
-{
-	Mat img = imread(_address);
-	if (img.empty())
+	if (_img.empty())
 	{
 		return 0;
 	}
@@ -42,27 +15,28 @@ int Image::testAddress(std::string _address)
 	}
 }
 
-void showImage(std::string _address, std::string _namedWindow)
+void showImage(Mat _img, std::string _namedWindow)
 {
-	Mat img = imread(_address);
-	namedWindow(_namedWindow, WINDOW_NORMAL);
-	imshow(_namedWindow, img);
+	namedWindow(_namedWindow, WINDOW_AUTOSIZE);
+	imshow(_namedWindow, _img);
 	waitKey(0);
 	destroyWindow(_namedWindow);
 }
-	
-void Image::showImageSource()
+
+void showImageThread(Mat _img, std::string _namedWindow)
 {
-	std::thread t(showImage, addressSource, "Image d'origine");
+	std::thread t(showImage, _img, _namedWindow);
+	t.detach();
 }
 
-void Image::imRGBtoGray(std::string _adresse)
+Mat imRGBtoGray(Mat _img)
 {
-	Mat im_rgb = imread(_adresse);
 	Mat im_gray;
-	cvtColor(im_rgb, im_gray, 7 );
+	cvtColor(_img, im_gray, 7);
+	return im_gray;
 }
 
+/*
 int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)
 {
 	int i = _i;
@@ -83,4 +57,4 @@ int Image::filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksiz
 
 	}
 }
-
+*/

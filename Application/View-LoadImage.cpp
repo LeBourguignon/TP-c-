@@ -25,7 +25,7 @@ void ViewLoadImage::notify()
  */
 void ViewLoadImage::display()
 {
-    std::string addressSource;
+    std::string address;
     int w = 0;
  
     do
@@ -43,18 +43,18 @@ void ViewLoadImage::display()
         std::cout << "\tVeuillez entrer l'adresse de l'image (ex : C:/mon-image.jpg) : ";
 
         std::cin.clear();
-        std::cin >> addressSource;
-        if (!controller.testAddress(addressSource))
+        std::cin >> address;
+        if (!controller.testAddress(address))
         {
             w = 1;
         }
         else
         {
-            controller.setAddressSource(addressSource);
             w = 2;
         }
     } while (w != 2);
 
-    controller.showImageSource(); //Executer cette ligne en multithreading!!!
+    controller.setAddress(address);
+    controller.updateImage("Image d'origine");
     controller.setScreen(0);
 }
