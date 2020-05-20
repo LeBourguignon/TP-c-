@@ -36,6 +36,13 @@ Mat imRGBtoGray(Mat _img)
 	return im_gray;
 }
 
+Mat gaussianFilter(Mat _img, int _i)
+{
+	GaussianBlur(_img, _img, _img.size(), _i);
+	return _img;
+}
+
+
 /*
 int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)
 {

@@ -9,6 +9,7 @@ private:
 	int currentScreen;
 
 	cv::Mat img;
+	cv::Mat ghost;
 
 public:
 	/**
@@ -29,8 +30,12 @@ public:
 
 	//Fonction Image:
 	void setAddress(std::string _address);
+	
+	void ghostToImg();
 
 	int testAddress(std::string _address);
 
 	void updateImage(std::string _namedWindow);
+
+	void filtreGaussian(int _i);
 };

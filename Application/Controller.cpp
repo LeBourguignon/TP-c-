@@ -6,7 +6,7 @@ using namespace cv;
  * Constructor
  */
 Controller::Controller()
-    : Subject(), currentScreen(10), img(imread(""))
+    : Subject(), currentScreen(10), img(imread("")), ghost(imread(""))
 {
     
 }
@@ -37,6 +37,11 @@ void Controller::setAddress(std::string _address)
     img = imread(_address);
 }
 
+void Controller::ghostToImg()
+{
+    img = ghost;
+}
+
 int Controller::testAddress(std::string _address)
 {
     Mat imgTest = imread(_address);
@@ -46,4 +51,9 @@ int Controller::testAddress(std::string _address)
 void Controller::updateImage(std::string _namedWindow)
 {
     showImageThread(img, _namedWindow);
+}
+
+void Controller::filtreGaussian(int _i)
+{
+    ghost = gaussianFilter(img, _i);
 }

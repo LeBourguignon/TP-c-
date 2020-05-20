@@ -4,11 +4,15 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-int testAddressI(cv::Mat _img);
+using namespace cv;
 
-void showImageThread(cv::Mat _img, std::string _namedWindow);
+int testAddressI(Mat _img);
+
+void showImageThread(Mat _img, std::string _namedWindow);
 	
-cv::Mat imRGBtoGray(cv::Mat _img);
+Mat imRGBtoGray(Mat _img);
+
+Mat gaussianFilter(Mat _img, int _i);
 
 /*
 int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
