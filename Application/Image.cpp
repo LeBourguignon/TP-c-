@@ -42,6 +42,13 @@ Mat gaussianFilter(Mat _img, int _i)
 	return _img;
 }
 
+Mat medianFilter(Mat _img, int _i)
+{
+
+	medianBlur( _img, _img , _i);
+	return _img;
+}
+
 
 /*
 int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)

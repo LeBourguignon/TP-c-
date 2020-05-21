@@ -14,6 +14,9 @@ Mat imRGBtoGray(Mat _img);
 
 Mat gaussianFilter(Mat _img, int _i);
 
+Mat medianFilter(Mat _img, int _i);
+
+
 /*
 int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
 
