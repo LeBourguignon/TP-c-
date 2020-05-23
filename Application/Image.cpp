@@ -90,6 +90,7 @@ Mat Contours(Mat _img, double threshold1, double threshold2)
 		  double threshold1, double threshold2,
 		  int apertureSize = 3, bool L2gradient = false);*/
 	 //definition open cv
+
 	return _img;
 
 }

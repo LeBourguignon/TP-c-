@@ -3,7 +3,7 @@
 #include <string>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-#include<iostream>
+
 using namespace cv;
 
 int testAddressI(Mat _img);
