@@ -16,9 +16,8 @@ Mat gaussianFilter(Mat _img, int _i);
 
 Mat medianFilter(Mat _img, int _i);
 
+Mat gradient(Mat _img,  int  _x, int _y);
 
-/*
-int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
+Mat Eroder(Mat _img, int _ité); // _ité : itération ( nombre de fois que l'on veut éroder)
 
-int filtremed(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _ksize);
-*/
+Mat Dilater(Mat _img, int _ité);

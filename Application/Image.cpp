@@ -49,26 +49,35 @@ Mat medianFilter(Mat _img, int _i)
 	return _img;
 }
 
-
-/*
-int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)
+Mat gradient(Mat _img, int _dx, int _dy)
 {
-	int i = _i;
-	for (int i; i < MAX_KERNEL_LENGTH; i = i + 2) {
+	// dx : ordre de la dérivée en x
+	// dy : ordre de la dérivée en y
+	
+	Sobel(_img,_img, -1 , 3 ,1 ,0 ); //à tester 
 
-		GaussianBlur(_adresseSrc, _adresseDest, Size(i, i), 0, 0);
-
-	}
-	return 0;
+	return _img;
 }
 
-int Image::filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksize)
+Mat Eroder(Mat _img, int _ité)
 {
-	int ksize = _ksize;
-	for (int ksize; ksize < MAX_KERNEL_LENGTH; ksize = ksize + 2) {
+	erode(_img, _img, Mat(), Point(-1, -1), _ité); //à tester
 
-		medianBlur(_adresseSrc, _adresseDest, ksize);
+	
+	/*  noyau :	élément structurant utilisé pour l'érosion; si element=Mat() , un élément structurant rectangulaire 3 x 3 est utilisé. 
+	ancre : position de l'ancre dans l'élément; la valeur par défaut (-1, -1) signifie que l'ancre est au centre de l'élément.
+	*/
 
-	}
+	return _img;
 }
-*/
+
+Mat Dilater(Mat _img, int _ité)
+{
+	dilate(_img, _img, Mat(), Point(-1, -1), _ité);
+
+	return _img;
+}
+
+
+
+
