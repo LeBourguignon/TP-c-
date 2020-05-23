@@ -77,6 +77,22 @@ Mat Dilater(Mat _img, int _ité)
 
 	return _img;
 }
+/* ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
+	de plus l'image d'entrée doit être en noir et blanc */
+
+
+Mat Contours(Mat _img, double threshold1, double threshold2)
+{
+	
+	 Canny(_img, threshold1,threshold2); //PB d fontionnement
+
+	/*  CV_EXPORTS_W void Canny(InputArray image, OutputArray edges,
+		  double threshold1, double threshold2,
+		  int apertureSize = 3, bool L2gradient = false);*/
+	 //definition open cv
+	return _img;
+
+}
 
 
 
