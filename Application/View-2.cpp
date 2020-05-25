@@ -31,19 +31,17 @@ void View2::display()
         clear();
         View::display();
 
-        std::cout << "\tTest:" << std::endl;                              //Texte à refaire!!!!!!!
-        std::cout << "\t\t2. petite modif" << std::endl;
-        std::cout << "\t\t8. grosse modif" << std::endl << std::endl;
+        std::cout << "\tDonnez une valeur:" << std::endl;                              //Texte à refaire!!!!!!!
+        std::cout << "\t\tIl est conseillé une valeur entre 1 et 10" << std::endl << std::endl;
 
         std::cout << "\t-----------------------------------------------------------" << std::endl;
         std::cout << "\t0. Retour" << std::endl;
-        std::cout << "\t9. Quitter" << std::endl;
         std::cout << std::endl;
 
         std::cin.clear();
         std::cin >> x;
 
-        if (x == 0 || x == 9)
+        if (x == 0)
         {
             controller.setScreen(x);
         }
@@ -72,5 +70,5 @@ void View2::display()
                 x = 2;
             }
         }
-    } while (x != 0 && x != 9);
+    } while (x != 0);
 }
