@@ -49,12 +49,26 @@ Mat medianFilter(Mat _img, int _i)
 	return _img;
 }
 
-Mat gradient(Mat _img, int _dx, int _dy)
+Mat gradient(Mat _img)
 {
-	// dx : ordre de la dérivée en x
-	// dy : ordre de la dérivée en y
+	int scale = 1;
+	int delta = 0;
+	int ddepth = -1; //tester avec a la place de -1 si problème CV_16S
+
+	Mat grad_x, grad_y;
+	Mat abs_grad_x, abs_grad_y;
+
+	// Gradient en X
+	Sobel(_img, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(grad_x, abs_grad_x);
+
+	// Gradient en Y
+	Sobel(_img, grad_y, ddepth, 0, 1, 3, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(grad_y, abs_grad_y);
+
 	
-	Sobel(_img,_img, -1 , 3 ,1 ,0 ); //à tester 
+	addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, _img);
+
 
 	return _img;
 }
@@ -81,15 +95,12 @@ Mat Dilater(Mat _img, int _ité)
 	de plus l'image d'entrée doit être en noir et blanc */
 
 
-Mat Contours(Mat _img, double threshold1, double threshold2)
+Mat Contours(Mat _img, double threshold1)
 {
 	
-	 Canny(_img, threshold1,threshold2); //PB d fontionnement
+	 Canny(_img,_img , threshold1, threshold1*2, 3); 
 
-	/*  CV_EXPORTS_W void Canny(InputArray image, OutputArray edges,
-		  double threshold1, double threshold2,
-		  int apertureSize = 3, bool L2gradient = false);*/
-	 //definition open cv
+	
 
 	return _img;
 
