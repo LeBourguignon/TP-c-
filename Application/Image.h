@@ -21,6 +21,6 @@ Mat gradient(Mat _img);
 Mat Eroder(Mat _img, int _typeérosion, int _tailleérosion);
 Mat Dilater(Mat _img, int _typedilatation, int tailledilatation );
 
-Mat Contours(Mat _img, double threshold1, double threshold2);
+Mat Contours(Mat _img, double threshold1);
 
 Mat OpSeuil(Mat _img, int _Type, double _valseuil);
