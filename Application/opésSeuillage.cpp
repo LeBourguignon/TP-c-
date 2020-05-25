@@ -9,7 +9,7 @@
 */
 Mat opésSeuillage::SeuilBin(Mat _img, int _Type, double _valseuil)
 {
-	threshold(_img, _img, _valseuil,255,0 ); //255 étant la valeur max de seuil (luminosité max)
+	threshold(_img, _img, _valseuil,255,0 ); //255 étant la valeur max de seuil 
 	
 	return  _img;
 }

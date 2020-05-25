@@ -58,36 +58,41 @@ Mat gradient(Mat _img)
 	Mat grad_x, grad_y;
 	Mat abs_grad_x, abs_grad_y;
 
-	// Gradient en X
+
 	Sobel(_img, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
-	convertScaleAbs(grad_x, abs_grad_x);
+	convertScaleAbs(grad_x, abs_grad_x);	// gradient en X
 
-	// Gradient en Y
+	
 	Sobel(_img, grad_y, ddepth, 0, 1, 3, scale, delta, BORDER_DEFAULT);
-	convertScaleAbs(grad_y, abs_grad_y);
+	convertScaleAbs(grad_y, abs_grad_y);// Gradient en Y
+
 
 	
-	addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, _img);
+	addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, _img); //gradient total
+
 
 
 	return _img;
 }
 
-Mat Eroder(Mat _img, int _ité)
+
+// types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT
+
+Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion) 
 {
-	erode(_img, _img, Mat(), Point(-1, -1), _ité); //à tester
+	Mat element = getStructuringElement(_typeérosion, Size(2* _tailleérosion +1 ,2 * _tailleérosion),Point(_tailleérosion,_tailleérosion));
+	erode(_img, _img,element); 
 
 	
-	/*  noyau :	élément structurant utilisé pour l'érosion; si element=Mat() , un élément structurant rectangulaire 3 x 3 est utilisé. 
-	ancre : position de l'ancre dans l'élément; la valeur par défaut (-1, -1) signifie que l'ancre est au centre de l'élément.
-	*/
+	
 
 	return _img;
 }
 
-Mat Dilater(Mat _img, int _ité)
+Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
 {
-	dilate(_img, _img, Mat(), Point(-1, -1), _ité);
+	 Mat élement = getStructuringElement(_typedilatation, Size(2 * _tailledilatation + 1, 2 * _tailledilatation + 1), Point(_tailledilatation, _tailledilatation));
+	dilate(_img, _img,élement );
 
 	return _img;
 }

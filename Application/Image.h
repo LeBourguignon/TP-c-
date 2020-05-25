@@ -16,11 +16,10 @@ Mat gaussianFilter(Mat _img, int _i);
 
 Mat medianFilter(Mat _img, int _i);
 
-Mat gradient(Mat _img,  int  _x, int _y);
+Mat gradient(Mat _img);
 
-Mat Eroder(Mat _img, int _ité); // _ité : itération ( nombre de fois que l'on veut éroder)
-
-Mat Dilater(Mat _img, int _ité);
+Mat Eroder(Mat _img, int _typeérosion, int _tailleérosion);
+Mat Dilater(Mat _img, int _typedilatation, int tailledilatation );
 
  Mat   Contours(Mat _img, double threshold1, double threshold2);
 
