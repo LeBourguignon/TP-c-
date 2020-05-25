@@ -36,6 +36,11 @@ public:
 	int testAddress(std::string _address);
 
 	void updateImage(std::string _namedWindow);
+	void updateGhost(std::string _namedWindow);
 
 	void filtreGaussian(int _i);
+
+	void filtreMedian(int _i);
+
+	void OpSeuils(int _Type, double _i);
 };

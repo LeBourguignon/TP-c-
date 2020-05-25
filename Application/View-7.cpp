@@ -23,21 +23,87 @@ void View7::notify()
 /**
  * Displays the view
  */
+std::string type(int _i)
+{
+    switch (_i)
+    {
+    case 1: return "Operations de seuillages : Binaire";
+    case 2: return "Operations de seuillages : Binaire inverse";
+    case 3: return "Operations de seuillages : Seuil tronque";
+    case 4: return "Operations de seuillages : Seuil a zero";
+    case 5: return "Operations de seuillages : Seuil a zero inverse";
+    }
+}
+
 void View7::display()
 {
-    clear();
-    View::display();
+    int x = 0;
+    do
+    {
+        clear();
+        View::display();
 
-    std::cout << "\tBientot disponible!" << std::endl << std::endl;
+        std::cout << "\t1. Binaire" << std::endl;
+        std::cout << "\t2. Binaire inverse" << std::endl;
+        std::cout << "\t3. Seuil tronque" << std::endl;
+        std::cout << "\t4. Seuil a zero" << std::endl;
+        std::cout << "\t5. Seuil a zero inverse" << std::endl << std::endl;
 
-    std::cout << "\t-----------------------------------------------------------" << std::endl;
-    std::cout << "\t0. Retour" << std::endl;
-    std::cout << "\t9. Quitter" << std::endl;
-    std::cout << std::endl;
+        std::cout << "\t-----------------------------------------------------------" << std::endl;
+        std::cout << "\t0. Retour" << std::endl;
+        std::cout << std::endl;
 
-    int x;
-    std::cin.clear();
-    std::cin >> x;
+        std::cin.clear();
+        std::cin >> x;
 
-    controller.setScreen(x);
+        if (x == 0)
+        {
+            controller.setScreen(x);
+        }
+        else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5)
+        {
+            clear();
+            std::cout << type(x) << std::endl << std::endl;
+
+            std::cout << "\tDonnez une valeur:" << std::endl;
+            std::cout << "\t\tIl est conseille une valeur entre 1 et 10" << std::endl << std::endl;
+
+            std::cout << "\t-----------------------------------------------------------" << std::endl;
+            std::cout << "\t0. Retour" << std::endl;
+            std::cout << std::endl;
+
+            int z;
+            std::cin.clear();
+            std::cin >> z;
+
+            if (z != 0)
+            {
+                controller.OpSeuils(x, z);
+                controller.updateGhost(type(x));
+
+                clear();
+                std::cout << type(x) << std::endl << std::endl;
+
+                std::cout << "\tVoulez vous garder la modification ?" << std::endl;
+                std::cout << "\t\t1. Oui" << std::endl;
+                std::cout << "\t\t0. Non" << std::endl << std::endl;
+
+                int y;
+                std::cin.clear();
+                std::cin >> y;
+
+                if (y == 1)
+                {
+                    controller.ghostToImg();
+                    x = 0;
+                    controller.setScreen(x);
+                }
+                else
+                {
+                    x = 7;
+                    controller.setScreen(x);
+                }
+            }
+        }
+    } while (x != 0);
 }

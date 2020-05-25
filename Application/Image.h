@@ -22,6 +22,6 @@ Mat Eroder(Mat _img, int _ité); // _ité : itération ( nombre de fois que l'on ve
 
 Mat Dilater(Mat _img, int _ité);
 
- Mat   Contours(Mat _img, double threshold1, double threshold2);
+Mat Contours(Mat _img, double threshold1, double threshold2);
 
-
+Mat OpSeuil(Mat _img, int _Type, double _valseuil);

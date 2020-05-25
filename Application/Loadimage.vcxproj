@@ -155,7 +155,6 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="opésSeuillage.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="View-1.cpp" />
     <ClCompile Include="View-2.cpp" />
@@ -174,7 +173,6 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="opésSeuillage.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="View-1.h" />
     <ClInclude Include="View-2.h" />

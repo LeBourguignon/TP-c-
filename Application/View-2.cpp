@@ -32,7 +32,7 @@ void View2::display()
         View::display();
 
         std::cout << "\tDonnez une valeur:" << std::endl;                              //Texte à refaire!!!!!!!
-        std::cout << "\t\tIl est conseillé une valeur entre 1 et 10" << std::endl << std::endl;
+        std::cout << "\t\tIl est conseille une valeur entre 1 et 10" << std::endl << std::endl;
 
         std::cout << "\t-----------------------------------------------------------" << std::endl;
         std::cout << "\t0. Retour" << std::endl;
@@ -48,7 +48,7 @@ void View2::display()
         else
         {
             controller.filtreGaussian(x);
-            controller.updateImage("Filtre gaussien");
+            controller.updateGhost("Filtre gaussien");
 
             clear();
             View::display();

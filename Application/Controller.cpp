@@ -53,7 +53,23 @@ void Controller::updateImage(std::string _namedWindow)
     showImageThread(img, _namedWindow);
 }
 
+void Controller::updateGhost(std::string _namedWindow)
+{
+    showImageThread(ghost, _namedWindow);
+}
+
 void Controller::filtreGaussian(int _i)
 {
     ghost = gaussianFilter(img, _i);
+}
+
+void Controller::filtreMedian(int _i)
+{
+    ghost = medianFilter(img, _i);
+}
+
+void Controller::OpSeuils(int _Type, double _i)
+{
+    ghost = imRGBtoGray(img);
+    ghost = OpSeuil(ghost, _Type, _i);
 }
