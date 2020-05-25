@@ -2,7 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <opencv2/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/imgproc.hpp>
 
 using namespace cv;
 
@@ -14,8 +14,14 @@ Mat imRGBtoGray(Mat _img);
 
 Mat gaussianFilter(Mat _img, int _i);
 
-/*
-int filtregauss(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _i);
+Mat medianFilter(Mat _img, int _i);
 
-int filtremed(cv::InputArray _adresseSrc, cv::OutputArray _adresseDest, int _ksize);
-*/
+Mat gradient(Mat _img,  int  _x, int _y);
+
+Mat Eroder(Mat _img, int _ité); // _ité : itération ( nombre de fois que l'on veut éroder)
+
+Mat Dilater(Mat _img, int _ité);
+
+ Mat   Contours(Mat _img, double threshold1, double threshold2);
+
+

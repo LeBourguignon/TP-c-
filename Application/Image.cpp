@@ -42,26 +42,59 @@ Mat gaussianFilter(Mat _img, int _i)
 	return _img;
 }
 
-
-/*
-int Image::filtregauss(InputArray _adresseSrc, OutputArray _adresseDest, int _i)
+Mat medianFilter(Mat _img, int _i)
 {
-	int i = _i;
-	for (int i; i < MAX_KERNEL_LENGTH; i = i + 2) {
 
-		GaussianBlur(_adresseSrc, _adresseDest, Size(i, i), 0, 0);
-
-	}
-	return 0;
+	medianBlur( _img, _img , _i);
+	return _img;
 }
 
-int Image::filtremed(InputArray _adresseSrc, OutputArray _adresseDest, int _ksize)
+Mat gradient(Mat _img, int _dx, int _dy)
 {
-	int ksize = _ksize;
-	for (int ksize; ksize < MAX_KERNEL_LENGTH; ksize = ksize + 2) {
+	// dx : ordre de la dérivée en x
+	// dy : ordre de la dérivée en y
+	
+	Sobel(_img,_img, -1 , 3 ,1 ,0 ); //à tester 
 
-		medianBlur(_adresseSrc, _adresseDest, ksize);
-
-	}
+	return _img;
 }
-*/
+
+Mat Eroder(Mat _img, int _ité)
+{
+	erode(_img, _img, Mat(), Point(-1, -1), _ité); //à tester
+
+	
+	/*  noyau :	élément structurant utilisé pour l'érosion; si element=Mat() , un élément structurant rectangulaire 3 x 3 est utilisé. 
+	ancre : position de l'ancre dans l'élément; la valeur par défaut (-1, -1) signifie que l'ancre est au centre de l'élément.
+	*/
+
+	return _img;
+}
+
+Mat Dilater(Mat _img, int _ité)
+{
+	dilate(_img, _img, Mat(), Point(-1, -1), _ité);
+
+	return _img;
+}
+/* ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
+	de plus l'image d'entrée doit être en noir et blanc */
+
+
+Mat Contours(Mat _img, double threshold1, double threshold2)
+{
+	
+	 Canny(_img, threshold1,threshold2); //PB d fontionnement
+
+	/*  CV_EXPORTS_W void Canny(InputArray image, OutputArray edges,
+		  double threshold1, double threshold2,
+		  int apertureSize = 3, bool L2gradient = false);*/
+	 //definition open cv
+
+	return _img;
+
+}
+
+
+
+
