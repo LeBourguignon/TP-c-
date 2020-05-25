@@ -76,15 +76,13 @@ Mat gradient(Mat _img)
 }
 
 
-// types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT
+// types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT 
+// si tailleerosion ou tailledilatation = -1 la dilatation ou l'érotson sera centré au milieu de l'image
 
 Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion) 
 {
 	Mat element = getStructuringElement(_typeérosion, Size(2* _tailleérosion +1 ,2 * _tailleérosion),Point(_tailleérosion,_tailleérosion));
 	erode(_img, _img,element); 
-
-	
-	
 
 	return _img;
 }
@@ -96,6 +94,10 @@ Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
 
 	return _img;
 }
+
+
+
+
 /* ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
 	de plus l'image d'entrée doit être en noir et blanc */
 
