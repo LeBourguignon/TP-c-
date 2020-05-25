@@ -57,57 +57,78 @@ Mat gaussianFilter(Mat _img, int _i)
 	return _ghost;
 }
 
-Mat gradient(Mat _img, int _dx, int _dy)
-{
-	Mat _ghost;
-
-	// dx : ordre de la dérivée en x
-	// dy : ordre de la dérivée en y
-	
-	Sobel(_img,_ghost, -1 , 3 ,1 ,0 ); //à tester 
-
-	return _ghost;
-}
-
-Mat Eroder(Mat _img, int _ité)
-{
-	Mat _ghost;
-
-	erode(_img, _ghost, Mat(), Point(-1, -1), _ité); //à tester
-
-	
-	/*  noyau :	élément structurant utilisé pour l'érosion; si element=Mat() , un élément structurant rectangulaire 3 x 3 est utilisé. 
-	ancre : position de l'ancre dans l'élément; la valeur par défaut (-1, -1) signifie que l'ancre est au centre de l'élément.
-	*/
-
-	return _ghost;
-}
-
-Mat Dilater(Mat _img, int _ité)
-{
-	Mat _ghost;
-
-	dilate(_img, _ghost, Mat(), Point(-1, -1), _ité);
-
-	return _ghost;
-}
-/* ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
-	de plus l'image d'entrée doit être en noir et blanc */
 /*
-Mat Contours(Mat _img, double threshold1, double threshold2)
-{
+
+*/
+
+Mat gradient(Mat _img)
+{ 
+	int scale = 1;
+	int delta = 0;
+	int ddepth = -1; //tester avec a la place de -1 si problème CV_16S
+
+	Mat grad_x, grad_y;
+	Mat abs_grad_x, abs_grad_y;
+	Mat _ghost;
+
+
+	Sobel(_img, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(grad_x, abs_grad_x);	// gradient en X
+
 	
-	 Canny(_img, threshold1,threshold2); //PB d fontionnement
+	Sobel(_img, grad_y, ddepth, 0, 1, 3, scale, delta, BORDER_DEFAULT);
+	convertScaleAbs(grad_y, abs_grad_y);// Gradient en Y
+
+
+	
+	addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, _ghost); //gradient total
+
+	return _ghost;
+}
+
+/*
+	
+*/
+
+// types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT 
+// si tailleerosion ou tailledilatation = -1 la dilatation ou l'érotson sera centré au milieu de l'image
+
+Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion) 
+{
+	Mat _ghost;
+	Mat element = getStructuringElement(_typeérosion, Size(2* _tailleérosion +1 ,2 * _tailleérosion),Point(_tailleérosion,_tailleérosion));
+	erode(_img, _img,element); 
+	return _ghost;
+}
+
+/*
+
+*/
+
+Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
+{
+	Mat _ghost;
+	 Mat élement = getStructuringElement(_typedilatation, Size(2 * _tailledilatation + 1, 2 * _tailledilatation + 1), Point(_tailledilatation, _tailledilatation));
+	dilate(_img, _ghost, élement );
+	return _ghost;
+}
+
+/* 
+ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
+de plus l'image d'entrée doit être en noir et blanc 
+*/
+
+Mat Contours(Mat _img, double threshold1)
+{	
+	 Canny(_img,_img , threshold1, threshold1*2, 3); 
 
 	/*  CV_EXPORTS_W void Canny(InputArray image, OutputArray edges,
 		  double threshold1, double threshold2,
-		  int apertureSize = 3, bool L2gradient = false);
+		  int apertureSize = 3, bool L2gradient = false); */
 	 //definition open cv
-
+	
 	return _img;
-
 }
-*/
 
 /* 
 	7. Opérations de seuillages
