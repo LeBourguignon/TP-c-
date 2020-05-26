@@ -42,5 +42,13 @@ public:
 
 	void filtreMedian(int _i);
 
-	void OpSeuils(int _Type, double _i);
+	void calGradient();
+
+	void dilatation(int _type, int _taille);
+
+	void erosion(int _type, int _taille);
+
+	void dectContours(int _i);
+
+	void OpSeuils(int _type, double _i);
 };

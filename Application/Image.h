@@ -18,12 +18,12 @@ Mat medianFilter(Mat _img, int _i);
 
 Mat gradient(Mat _img);
 
-Mat Dilater(Mat _img, int _typedilatation, int tailledilatation);
+Mat dilater(Mat _img, int _type, int _taille);
 
-Mat Eroder(Mat _img, int _typeérosion, int _tailleérosion);
+Mat eroder(Mat _img, int _type, int _taille);
 
-Mat Contours(Mat _img, double thresh);
+Mat contours(Mat _img, double thresh);
 
-Mat OpSeuil(Mat _img, int _Type, double _i);
+Mat opSeuil(Mat _img, int _type, double _i);
 
 Mat segementation(Mat _img);

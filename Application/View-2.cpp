@@ -41,17 +41,14 @@ void View2::display()
         std::cin.clear();
         std::cin >> x;
 
-        if (x == 0)
-        {
-            controller.setScreen(x);
-        }
-        else
+        if (x != 0)
         {
             controller.filtreGaussian(x);
             controller.updateGhost("Filtre gaussien");
 
             clear();
             View::display();
+
             std::cout << "\tVoulez vous garder la modification ?" << std::endl;
             std::cout << "\t\t1. Oui" << std::endl;
             std::cout << "\t\t0. Non" << std::endl << std::endl;
@@ -69,6 +66,11 @@ void View2::display()
             {
                 x = 2;
             }
+            controller.setScreen(x);
+        }
+        else 
+        {
+            controller.setScreen(x);
         }
     } while (x != 0);
 }

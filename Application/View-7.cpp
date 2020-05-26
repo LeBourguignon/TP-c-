@@ -23,7 +23,7 @@ void View7::notify()
 /**
  * Displays the view
  */
-std::string type(int _i)
+std::string typeS(int _i)
 {
     switch (_i)
     {
@@ -32,6 +32,7 @@ std::string type(int _i)
     case 3: return "Operations de seuillages : Seuil tronque";
     case 4: return "Operations de seuillages : Seuil a zero";
     case 5: return "Operations de seuillages : Seuil a zero inverse";
+    default: return "Operations de seuillages : Erreur";
     }
 }
 
@@ -63,7 +64,7 @@ void View7::display()
         else if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5)
         {
             clear();
-            std::cout << type(x) << std::endl << std::endl;
+            std::cout << typeS(x) << std::endl << std::endl;
 
             std::cout << "\tDonnez une valeur:" << std::endl;
             std::cout << "\t\tIl est conseille une valeur entre 1 et 255" << std::endl << std::endl;
@@ -79,10 +80,10 @@ void View7::display()
             if (z != 0)
             {
                 controller.OpSeuils(x, z);
-                controller.updateGhost(type(x));
+                controller.updateGhost(typeS(x));
 
                 clear();
-                std::cout << type(x) << std::endl << std::endl;
+                std::cout << typeS(x) << std::endl << std::endl;
 
                 std::cout << "\tVoulez vous garder la modification ?" << std::endl;
                 std::cout << "\t\t1. Oui" << std::endl;
@@ -96,13 +97,12 @@ void View7::display()
                 {
                     controller.ghostToImg();
                     x = 0;
-                    controller.setScreen(x);
                 }
                 else
                 {
                     x = 7;
-                    controller.setScreen(x);
                 }
+                controller.setScreen(x);
             }
         }
     } while (x != 0);
