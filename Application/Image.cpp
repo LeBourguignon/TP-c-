@@ -95,7 +95,9 @@ Mat gradient(Mat _img)
 
 /*
 	4. Dilatation
-		
+		1 : Rectagle
+		2 : Croix
+		3 : Ellipse	
 */
 
 Mat dilater(Mat _img, int _type, int _taille)
@@ -109,10 +111,10 @@ Mat dilater(Mat _img, int _type, int _taille)
 
 /*
 	5. Erosion
+		1 : Rectagle
+		2 : Croix
+		3 : Ellipse
 */
-
-// types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT 
-// si tailleerosion ou tailledilatation = -1 la dilatation ou l'érotson sera centré au milieu de l'image
 
 Mat eroder(Mat _img, int _type, int _taille)
 {
@@ -126,7 +128,7 @@ Mat eroder(Mat _img, int _type, int _taille)
 /* 
 	6. Application d'un detecteur de contours ( Canny )
 
- l'image d'entrée doit être en noir et blanc 
+		l'image d'entrée doit être en noir et blanc 
 */
 
 Mat contours(Mat _img, double thresh)

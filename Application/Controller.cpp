@@ -31,7 +31,9 @@ int Controller::getCurrentScreen()
     return currentScreen;
 }
 
-//Fonction Image:
+/*
+    Fonction de Image.h
+*/
 void Controller::setAddress(std::string _address)
 {
     img = imread(_address);

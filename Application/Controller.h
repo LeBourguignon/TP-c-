@@ -28,7 +28,9 @@ public:
 	 */
 	int getCurrentScreen();
 
-	//Fonction Image:
+	/*
+		Fonction de Image.h
+	*/
 	void setAddress(std::string _address);
 	
 	void ghostToImg();
