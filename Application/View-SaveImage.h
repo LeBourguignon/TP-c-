@@ -1,9 +1,9 @@
 #pragma once
-#include "Observer.h"
 #include "View.h"
 #include "Controller.h"
+#include "Observer.h"
 
-class ViewMenuImage: public View
+class ViewSaveImage : public View
 {
 private:
 	// Controller of the application
@@ -13,7 +13,7 @@ public:
 	 * Constructor
 	 * @param _controller Application controller
 	 */
-	ViewMenuImage(Controller& _controller);
+	ViewSaveImage(Controller& _controller);
 
 	/**
 	 * Notification function of the view

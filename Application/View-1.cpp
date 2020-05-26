@@ -31,7 +31,7 @@ void View1::display()
         clear();
         View::display();
 
-        std::cout << "\tDonnez une valeur:" << std::endl;                              //Texte à refaire!!!!!!!
+        std::cout << "\tDonnez une valeur:" << std::endl;
         std::cout << "\t\tIl est conseille une valeur entre 1 et 10" << std::endl << std::endl;
 
         std::cout << "\t-----------------------------------------------------------" << std::endl;

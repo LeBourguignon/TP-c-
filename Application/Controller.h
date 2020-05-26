@@ -28,7 +28,9 @@ public:
 	 */
 	int getCurrentScreen();
 
-	//Fonction Image:
+	/*
+		Fonction de Image.h
+	*/
 	void setAddress(std::string _address);
 	
 	void ghostToImg();
@@ -37,6 +39,8 @@ public:
 
 	void updateImage(std::string _namedWindow);
 	void updateGhost(std::string _namedWindow);
+
+	void saveImage(std::string _address);
 
 	void filtreGaussian(int _i);
 

@@ -47,7 +47,9 @@ void ViewMenuImage::display()
     std::cout << "\t\t8. Segmentation par croissance de region" << std::endl << std::endl;
 
     std::cout << "\t-----------------------------------------------------------" << std::endl;
-    std::cout << "\t9. Quitter" << std::endl;
+    std::cout << "\t 9. Afficher l'image" << std::endl;
+    std::cout << "\t10. Changer d'image" << std::endl;
+    std::cout << "\t11. Quitter" << std::endl;
     std::cout << std::endl;
 
     int x;
