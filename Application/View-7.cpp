@@ -79,7 +79,7 @@ void View7::display()
 
             if (z != 0)
             {
-                controller.OpSeuils(x, z);
+                controller.opSeuils(x, z);
                 controller.updateGhost(typeS(x));
 
                 clear();

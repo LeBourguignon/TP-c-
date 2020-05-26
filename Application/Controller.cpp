@@ -91,8 +91,13 @@ void Controller::dectContours(int _i)
     ghost = imRGBtoGray(ghost);
 }
 
-void Controller::OpSeuils(int _Type, double _i)
+void Controller::opSeuils(int _Type, double _i)
 {
     ghost = imRGBtoGray(ghost);
     ghost = opSeuil(ghost, _Type, _i);
+}
+
+void Controller::segementations()
+{
+    ghost = segementation(img);
 }

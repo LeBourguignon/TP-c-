@@ -50,5 +50,7 @@ public:
 
 	void dectContours(int _i);
 
-	void OpSeuils(int _type, double _i);
+	void opSeuils(int _type, double _i);
+
+	void segementations();
 };

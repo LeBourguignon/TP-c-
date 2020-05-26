@@ -25,19 +25,24 @@ void View8::notify()
  */
 void View8::display()
 {
+    controller.segementations();
+    controller.updateGhost("Segmentation par croissance de region");
+
     clear();
     View::display();
 
-    std::cout << "\tBientot disponible!" << std::endl << std::endl;
+    std::cout << "\tVoulez vous garder la modification ?" << std::endl;
+    std::cout << "\t\t1. Oui" << std::endl;
+    std::cout << "\t\t0. Non" << std::endl << std::endl;
 
-    std::cout << "\t-----------------------------------------------------------" << std::endl;
-    std::cout << "\t0. Retour" << std::endl;
-    std::cout << "\t9. Quitter" << std::endl;
-    std::cout << std::endl;
-
-    int x;
+    int y;
     std::cin.clear();
-    std::cin >> x;
+    std::cin >> y;
 
-    controller.setScreen(x);
+    if (y == 1)
+    {
+        controller.ghostToImg();
+    }
+
+    controller.setScreen(0);
 }
