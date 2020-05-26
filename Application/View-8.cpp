@@ -47,6 +47,7 @@ void View8::display()
             x--;
             controller.segementations(x);
             controller.updateGhost("Segmentation par croissance de region");
+            x++;
 
             clear();
             View::display();
