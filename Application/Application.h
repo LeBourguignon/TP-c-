@@ -18,11 +18,8 @@ class Application
 {
 private:
 	Controller controller;
-	ViewLoadImage viewLoadImage;
 	ViewMenuImage viewMenuImage;
-	ViewShowImage viewShowImage;
-	ViewSaveImage viewSaveImage;
-
+	
 	View1 view1;
 	View2 view2;
 	View3 view3;
@@ -31,6 +28,10 @@ private:
 	View6 view6;
 	View7 view7;
 	View8 view8;
+
+	ViewShowImage viewShowImage;
+	ViewSaveImage viewSaveImage;
+	ViewLoadImage viewLoadImage;
 	
 public:
 	/**

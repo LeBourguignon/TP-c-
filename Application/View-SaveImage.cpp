@@ -16,7 +16,7 @@ ViewSaveImage::ViewSaveImage(Controller& _controller)
  */
 void ViewSaveImage::notify()
 {
-    if (controller.getCurrentScreen() == 11 || controller.getCurrentScreen() == 10)
+    if (controller.getCurrentScreen() == 10 || controller.getCurrentScreen() == 11)
         display();
 }
 
