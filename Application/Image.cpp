@@ -181,8 +181,7 @@ Mat segementation(Mat _img)
 			}
 		}
 	}
-	// Afficher l'image de sortie 
-		imshow("Image de fond noir", ghost_1);
+	
 	// Créer un noyau que nous utiliserons pour affiner notre image
 	Mat kernel = (Mat_<float>(3, 3) <<
 		1, 1, 1,
@@ -196,13 +195,12 @@ Mat segementation(Mat _img)
 	// reconvertit en échelle de gris 8 bits 
 	imgResult.convertTo(imgResult, CV_8UC3);
 	imgLaplacian.convertTo(imgLaplacian, CV_8UC3);
-	// imshow ("Laplace Filtered Image", imgLaplacian); 
-			imshow("Nouvelle image nette", imgResult);
-
+	
+		
 	Mat _ghost;
 	cvtColor(imgResult, _ghost, 7);
 	threshold(_img, _ghost, 40, 255, THRESH_BINARY | THRESH_OTSU);
-			imshow("Binary Image",_ghost);
+			
 
 	// Effectue l'algorithme de transformation de distance
 	distanceTransform(_ghost ,_ghost,DIST_L2,3);
@@ -214,8 +212,7 @@ Mat segementation(Mat _img)
 	Mat kernel1 = Mat::ones(3, 3, CV_8U);
 	// Dilate un peu l'image
 	dilate(_ghost, _ghost, kernel1);
-			imshow("Peaks", _ghost);
-
+			
 	// Créer la version CV_8U de l'image de distance nécessaire pour findContours () 
 	Mat _ghost_8u;
 	_ghost.convertTo(_ghost_8u, CV_8U);
@@ -231,8 +228,7 @@ Mat segementation(Mat _img)
 	}
 	// Dessine le marqueur de fond 
 	circle(markers, Point(5, 5), 3, Scalar(255), -1);
-			imshow("Markers", markers * 10000);
-
+			
 	// Effectue l'algorithme "watershed"
 	watershed(imgResult, markers); 
 	// Génère des couleurs aléatoires
@@ -248,9 +244,8 @@ Mat segementation(Mat _img)
 		int r = theRNG().uniform(0, 256);
 		colors.push_back(Vec3b((uchar)b, (uchar)g, (uchar)r));
 	}
-	// Créer l'image résultat
 	Mat dst = Mat::zeros(markers.size(), CV_8UC3);
-	// Remplit les objets étiquetés avec des couleurs aléatoires 
+
 	for (int i = 0; i < markers.rows; i++)
 	{
 		for (int j = 0; j < markers.cols; j++)
