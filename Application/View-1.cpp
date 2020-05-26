@@ -41,17 +41,14 @@ void View1::display()
         std::cin.clear();
         std::cin >> x;
 
-        if (x == 0)
-        {
-            controller.setScreen(x);
-        }
-        else
+        if (x != 0)
         {
             controller.filtreMedian(x);
             controller.updateGhost("Filtre median");
 
             clear();
             View::display();
+
             std::cout << "\tVoulez vous garder la modification ?" << std::endl;
             std::cout << "\t\t1. Oui" << std::endl;
             std::cout << "\t\t0. Non" << std::endl << std::endl;
@@ -69,6 +66,11 @@ void View1::display()
             {
                 x = 1;
             }
+            controller.setScreen(x);
+        }
+        else
+        {
+            controller.setScreen(x);
         }
     } while (x != 0);
 }

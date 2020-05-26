@@ -25,19 +25,24 @@ void View3::notify()
  */
 void View3::display()
 {
+    controller.calGradient();
+    controller.updateGhost("Calcul du gradient dans une image (Sobel)");
+
     clear();
     View::display();
 
-    std::cout << "\tBientot disponible!" << std::endl << std::endl;
+    std::cout << "\tVoulez vous garder la modification ?" << std::endl;
+    std::cout << "\t\t1. Oui" << std::endl;
+    std::cout << "\t\t0. Non" << std::endl << std::endl;
 
-    std::cout << "\t-----------------------------------------------------------" << std::endl;
-    std::cout << "\t0. Retour" << std::endl;
-    std::cout << "\t9. Quitter" << std::endl;
-    std::cout << std::endl;
-
-    int x;
+    int y;
     std::cin.clear();
-    std::cin >> x;
-
-    controller.setScreen(x);
+    std::cin >> y;
+    
+    if (y == 1)
+    {
+        controller.ghostToImg();
+    }
+    
+    controller.setScreen(0);
 }

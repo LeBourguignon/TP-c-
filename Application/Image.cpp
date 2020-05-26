@@ -39,6 +39,7 @@ Mat imRGBtoGray(Mat _img)
 /*
 	1. Filtre Médian
 */
+
 Mat medianFilter(Mat _img, int _i)
 {
 	Mat _ghost;
@@ -50,6 +51,7 @@ Mat medianFilter(Mat _img, int _i)
 /*
 	2. Filtre Gaussian
 */
+
 Mat gaussianFilter(Mat _img, int _i)
 {
 	Mat _ghost;
@@ -88,12 +90,14 @@ Mat gradient(Mat _img)
 
 /*
 	4. Dilatation
+		
 */
 
-Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
+Mat dilater(Mat _img, int _type, int _taille)
 {
 	Mat _ghost;
-	Mat élement = getStructuringElement(_typedilatation, Size(2 * _tailledilatation + 1, 2 * _tailledilatation + 1), Point(_tailledilatation, _tailledilatation));
+	_type--;
+	Mat élement = getStructuringElement(_type, Size(2 * _taille + 1, 2 * _taille + 1));
 	dilate(_img, _ghost, élement);
 	return _ghost;
 }
@@ -105,11 +109,12 @@ Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
 // types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT 
 // si tailleerosion ou tailledilatation = -1 la dilatation ou l'érotson sera centré au milieu de l'image
 
-Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion) 
+Mat eroder(Mat _img, int _type, int _taille)
 {
 	Mat _ghost;
-	Mat element = getStructuringElement(_typeérosion, Size(2* _tailleérosion +1 ,2 * _tailleérosion),Point(_tailleérosion,_tailleérosion));
-	erode(_img, _img,element); 
+	_type--;
+	Mat element = getStructuringElement(_type, Size(2* _taille +1 ,2 * _taille));
+	erode(_img, _ghost,element); 
 	return _ghost;
 }
 
@@ -119,7 +124,7 @@ Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion)
  l'image d'entrée doit être en noir et blanc 
 */
 
-Mat Contours(Mat _img, double thresh)
+Mat contours(Mat _img, double thresh)
 {
 	Mat _ghost;
 	RNG rng(12345);
@@ -138,8 +143,7 @@ Mat Contours(Mat _img, double thresh)
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
 		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
 	}
-	_ghost = drawing;
-	return _ghost;
+	return drawing;
 }
 
 /* 
@@ -150,11 +154,12 @@ Mat Contours(Mat _img, double thresh)
 		4 : Seuil à zéro
 		5 : Seuil à zéro inversé
 */
-Mat OpSeuil(Mat _img, int _Type, double _i)
+
+Mat opSeuil(Mat _img, int _type, double _i)
 {
 	Mat _ghost;
-	_Type--;
-	threshold(_img, _ghost, _i, 255, _Type); //255 étant la valeur max de seuil (luminosité max)
+	_type--;
+	threshold(_img, _ghost, _i, 255, _type); //255 étant la valeur max de seuil (luminosité max)
 	return  _ghost;
 }
 
@@ -163,6 +168,7 @@ Mat OpSeuil(Mat _img, int _Type, double _i)
 */
 
 //img en couleur ss changements
+
 Mat segementation(Mat _img)
 {
 	Mat ghost_1 = _img;
@@ -256,8 +262,5 @@ Mat segementation(Mat _img)
 			}
 		}
 	}
-
-
-
 	return dst;
 }
