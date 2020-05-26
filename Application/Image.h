@@ -30,4 +30,4 @@ Mat contours(Mat _img, double thresh);
 
 Mat opSeuil(Mat _img, int _type, double _i);
 
-Mat segementation(Mat _img , bool couleurs);
+Mat segementation(Mat _img,bool couleurs);

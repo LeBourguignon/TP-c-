@@ -94,8 +94,8 @@ void Controller::dectContours(int _i)
 {
     ghost = gradient(img);
     ghost = contours(ghost, _i);
-    ghost = gradient(ghost);
-    ghost = imRGBtoGray(ghost);
+  //  ghost = gradient(ghost);
+  //  ghost = imRGBtoGray(ghost);
 }
 
 void Controller::opSeuils(int _Type, double _i)

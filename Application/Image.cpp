@@ -133,13 +133,13 @@ Mat eroder(Mat _img, int _type, int _taille)
 
 Mat contours(Mat _img, double thresh)
 {
-	Mat _ghost;
+	
 	RNG rng(12345);
-
+	Mat _ghost;
 	std::vector<std::vector<Point> > contours;
 	std::vector<Vec4i> hierarchy;
 
-	// Detect edges using canny
+	
 	Canny(_img, _ghost, thresh, thresh * 2, 3);
 
 	findContours(_ghost, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
@@ -150,7 +150,7 @@ Mat contours(Mat _img, double thresh)
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
 		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
 	}
-	return drawing;
+	return _ghost;
 }
 
 /* 
@@ -176,7 +176,7 @@ Mat opSeuil(Mat _img, int _type, double _i)
 
 //img en couleur ss changements
 
-Mat segementation(Mat _img, bool couleurs)
+Mat segementation(Mat _img,bool couleurs)
 {
 	Mat src = _img;
 	// Créer un noyau que nous utiliserons pour affiner notre image
@@ -232,6 +232,7 @@ Mat segementation(Mat _img, bool couleurs)
 	std::vector<Vec3b> colors;
 	for (size_t i = 0; i < contours.size(); i++)
 	{
+
 		int b, g, r;
 		if (couleurs) {
 			// Génère des couleurs aléatoires
