@@ -66,7 +66,7 @@ void View7::display()
             std::cout << type(x) << std::endl << std::endl;
 
             std::cout << "\tDonnez une valeur:" << std::endl;
-            std::cout << "\t\tIl est conseille une valeur entre 1 et 10" << std::endl << std::endl;
+            std::cout << "\t\tIl est conseille une valeur entre 1 et 255" << std::endl << std::endl;
 
             std::cout << "\t-----------------------------------------------------------" << std::endl;
             std::cout << "\t0. Retour" << std::endl;

@@ -58,7 +58,7 @@ Mat gaussianFilter(Mat _img, int _i)
 }
 
 /*
-
+	3. Calcul du gradient dans une image ( Sobel )
 */
 
 Mat gradient(Mat _img)
@@ -87,7 +87,19 @@ Mat gradient(Mat _img)
 }
 
 /*
-	
+	4. Dilatation
+*/
+
+Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
+{
+	Mat _ghost;
+	Mat élement = getStructuringElement(_typedilatation, Size(2 * _tailledilatation + 1, 2 * _tailledilatation + 1), Point(_tailledilatation, _tailledilatation));
+	dilate(_img, _ghost, élement);
+	return _ghost;
+}
+
+/*
+	5. Erosion
 */
 
 // types d'erosion ou de dilatation : MORPH_ELLIPSE  , MORPH_CROSS , MORPH_RECT 
@@ -101,33 +113,34 @@ Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion)
 	return _ghost;
 }
 
-/*
-
-*/
-
-Mat Dilater(Mat _img, int _typedilatation, int _tailledilatation)
-{
-	Mat _ghost;
-	 Mat élement = getStructuringElement(_typedilatation, Size(2 * _tailledilatation + 1, 2 * _tailledilatation + 1), Point(_tailledilatation, _tailledilatation));
-	dilate(_img, _ghost, élement );
-	return _ghost;
-}
-
 /* 
+	6. Application d'un detecteur de contours ( Canny )
+
 ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
 de plus l'image d'entrée doit être en noir et blanc 
 */
 
-Mat Contours(Mat _img, double threshold1)
-{	
-	 Canny(_img,_img , threshold1, threshold1*2, 3); 
+Mat Contours(Mat _img, double thresh)
+{
+	Mat _ghost;
+	RNG rng(12345);
 
-	/*  CV_EXPORTS_W void Canny(InputArray image, OutputArray edges,
-		  double threshold1, double threshold2,
-		  int apertureSize = 3, bool L2gradient = false); */
-	 //definition open cv
-	
-	return _img;
+	std::vector<std::vector<Point> > contours;
+	std::vector<Vec4i> hierarchy;
+
+	// Detect edges using canny
+	Canny(_img, _ghost, thresh, thresh * 2, 3);
+
+	findContours(_ghost, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));
+
+	Mat drawing = Mat::zeros(_ghost.size(), CV_8UC3);
+	for (int i = 0; i < contours.size(); i++)
+	{
+		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
+	}
+	_ghost = drawing;
+	return _ghost;
 }
 
 /* 
@@ -144,4 +157,13 @@ Mat OpSeuil(Mat _img, int _Type, double _i)
 	_Type--;
 	threshold(_img, _ghost, _i, 255, _Type); //255 étant la valeur max de seuil (luminosité max)
 	return  _ghost;
+}
+
+/*
+	8. Segmentation par croissance de region
+*/
+Mat segementation(Mat _img)
+{
+	Mat _ghost;
+	return _ghost;
 }
