@@ -116,8 +116,7 @@ Mat Eroder(Mat _img,int _typeérosion, int _tailleérosion)
 /* 
 	6. Application d'un detecteur de contours ( Canny )
 
-ATTENTION pour les contours l'image doit d'abord avoir subit un filtre gaussien  ainsi q'un calcul du gradient avant cette étape !!!
-de plus l'image d'entrée doit être en noir et blanc 
+ l'image d'entrée doit être en noir et blanc 
 */
 
 Mat Contours(Mat _img, double thresh)
