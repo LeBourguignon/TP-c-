@@ -169,88 +169,78 @@ Mat opSeuil(Mat _img, int _type, double _i)
 
 //img en couleur ss changements
 
-Mat segementation(Mat _img)
+Mat segementation(Mat _img, bool couleurs)
 {
-	Mat ghost_1 = _img;
- // Changer l'arrière-plan du blanc au noir, car cela aidera plus tard à extraire 
-  // meilleurs résultats lors de l'utilisation de la transformation de distance 
-
-
-	for (int i = 0; i < ghost_1.rows; i++) {
-		for (int j = 0; j < ghost_1.cols; j++) {
-			if (ghost_1.at<Vec3b>(i, j) == Vec3b(255, 255, 255))
-			{
-				ghost_1.at<Vec3b>(i, j)[0] = 0;
-				ghost_1.at<Vec3b>(i, j)[1] = 0;
-				ghost_1.at<Vec3b>(i, j)[2] = 0;
-			}
-		}
-	}
-	
+	Mat src = _img;
 	// Créer un noyau que nous utiliserons pour affiner notre image
 	Mat kernel = (Mat_<float>(3, 3) <<
 		1, 1, 1,
 		1, -8, 1,
 		1, 1, 1);
 	Mat imgLaplacian;
-	filter2D(ghost_1, imgLaplacian, CV_32F,kernel);
+	filter2D(src, imgLaplacian, CV_32F, kernel);
 	Mat sharp;
-	ghost_1.convertTo(sharp, CV_32F);
+	src.convertTo(sharp, CV_32F);
 	Mat imgResult = sharp - imgLaplacian;
-	// reconvertit en échelle de gris 8 bits 
+	// reconvertit en échelle de gris 8 bits
 	imgResult.convertTo(imgResult, CV_8UC3);
 	imgLaplacian.convertTo(imgLaplacian, CV_8UC3);
 	
-		
-	Mat _ghost;
-	cvtColor(imgResult, _ghost, 7);
-	threshold(_img, _ghost, 40, 255, THRESH_BINARY | THRESH_OTSU);
-			
-
+	Mat bw;
+	cvtColor(imgResult, bw, COLOR_BGR2GRAY);
+	threshold(bw, bw, 40, 255, THRESH_BINARY | THRESH_OTSU);
 	// Effectue l'algorithme de transformation de distance
-	distanceTransform(_ghost ,_ghost,DIST_L2,3);
-	/* Normaliser l'image de distance pour la plage = {0,0, 1,0} 
-	 afin que nous puissions le visualiser et le seuiller */
-	normalize(_ghost, _ghost, 0, 1.0, NORM_MINMAX);
+	Mat dist;
+	distanceTransform(bw, dist, DIST_L2, 3);
+	
+	normalize(dist, dist, 0, 1.0, NORM_MINMAX);
 	//Seuil pour obtenir les pics
-	threshold(_ghost, _ghost, 0.4, 1.0, THRESH_BINARY);
-	Mat kernel1 = Mat::ones(3, 3, CV_8U);
+	threshold(dist, dist, 0.4, 1.0, THRESH_BINARY);
 	// Dilate un peu l'image
-	dilate(_ghost, _ghost, kernel1);
-			
-	// Créer la version CV_8U de l'image de distance nécessaire pour findContours () 
-	Mat _ghost_8u;
-	_ghost.convertTo(_ghost_8u, CV_8U);
+	Mat kernel1 = Mat::ones(3, 3, CV_8U);
+	dilate(dist, dist, kernel1);
+	// Créer la version CV_8U de l'image de distance nécessaire pour findContours ()
+	Mat dist_8u;
+	dist.convertTo(dist_8u, CV_8U);
 	// Trouver les marqueurs totaux 
 	std::vector<std::vector<Point> > contours;
-	findContours(_ghost, _ghost, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	findContours(dist_8u, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 	// Créer l'image de marqueur pour l'algorithme  "watershed" 
-	Mat markers = Mat::zeros(_ghost.size(), CV_32S);
-	// Dessine les marqueurs de premier plan 
+	Mat markers = Mat::zeros(dist.size(), CV_32S);
+	// Dessine les marqueurs de premier plan
 	for (size_t i = 0; i < contours.size(); i++)
 	{
 		drawContours(markers, contours, static_cast<int>(i), Scalar(static_cast<int>(i) + 1), -1);
 	}
 	// Dessine le marqueur de fond 
 	circle(markers, Point(5, 5), 3, Scalar(255), -1);
-			
 	// Effectue l'algorithme "watershed"
-	watershed(imgResult, markers); 
-	// Génère des couleurs aléatoires
+	watershed(imgResult, markers);
 	Mat mark;
 	markers.convertTo(mark, CV_8U);
 	bitwise_not(mark, mark);
 
+	Mat dst = Mat::zeros(markers.size(), CV_8UC3);
+	
 	std::vector<Vec3b> colors;
 	for (size_t i = 0; i < contours.size(); i++)
 	{
-		int b = theRNG().uniform(0, 256);
-		int g = theRNG().uniform(0, 256);
-		int r = theRNG().uniform(0, 256);
+		int b, g, r;
+		if (couleurs) {
+			// Génère des couleurs aléatoires
+			b = theRNG().uniform(0, 256);
+			g = theRNG().uniform(0, 256);
+			r = theRNG().uniform(0, 256);
+		}
+		else {
+			//laisse le fond en blanc
+			b = 255;
+			g = 255;
+			r = 255;
+		}
 		colors.push_back(Vec3b((uchar)b, (uchar)g, (uchar)r));
 	}
-	Mat dst = Mat::zeros(markers.size(), CV_8UC3);
-
+	
 	for (int i = 0; i < markers.rows; i++)
 	{
 		for (int j = 0; j < markers.cols; j++)
@@ -262,5 +252,7 @@ Mat segementation(Mat _img)
 			}
 		}
 	}
+
+
 	return dst;
 }
