@@ -29,6 +29,11 @@ void showImageThread(Mat _img, std::string _namedWindow)
 	t.detach();
 }
 
+void save(Mat _img, std::string _address)
+{
+	imwrite(_address, _img);
+}
+
 Mat imRGBtoGray(Mat _img)
 {
 	Mat _ghost;

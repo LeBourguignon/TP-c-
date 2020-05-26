@@ -2,6 +2,8 @@
 #include "Controller.h"
 #include "View-LoadImage.h"
 #include "View-MenuImage.h"
+#include "View-ShowImage.h"
+#include "View-SaveImage.h"
 
 #include "View-1.h"
 #include "View-2.h"
@@ -18,6 +20,9 @@ private:
 	Controller controller;
 	ViewLoadImage viewLoadImage;
 	ViewMenuImage viewMenuImage;
+	ViewShowImage viewShowImage;
+	ViewSaveImage viewSaveImage;
+
 	View1 view1;
 	View2 view2;
 	View3 view3;

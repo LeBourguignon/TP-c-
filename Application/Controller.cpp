@@ -6,7 +6,7 @@ using namespace cv;
  * Constructor
  */
 Controller::Controller()
-    : Subject(), currentScreen(10), img(imread("")), ghost(imread(""))
+    : Subject(), currentScreen(12), img(imread("")), ghost(imread(""))
 {
     
 }
@@ -17,7 +17,7 @@ Controller::Controller()
  */
 void Controller::setScreen(const int& value)
 {
-    if (value >= 0 && value <= 9)
+    if (value >= 0 && value <= 13)
         currentScreen = value;
 
     notify();
@@ -56,6 +56,11 @@ void Controller::updateImage(std::string _namedWindow)
 void Controller::updateGhost(std::string _namedWindow)
 {
     showImageThread(ghost, _namedWindow);
+}
+
+void Controller::saveImage(std::string _address)
+{
+    save(img, _address);
 }
 
 void Controller::filtreGaussian(int _i)

@@ -16,7 +16,7 @@ ViewLoadImage::ViewLoadImage(Controller& _controller)
  */
 void ViewLoadImage::notify()
 {
-	if (controller.getCurrentScreen() == 10)
+	if (controller.getCurrentScreen() == 12)
 		display();
 }
 
@@ -55,6 +55,6 @@ void ViewLoadImage::display()
     } while (w != 2);
 
     controller.setAddress(address);
-    controller.updateImage("Image d'origine");
+    controller.updateImage("Image");
     controller.setScreen(0);
 }

@@ -11,6 +11,8 @@ using namespace cv;
 int testAddressI(Mat _img);
 
 void showImageThread(Mat _img, std::string _namedWindow);
+
+void save(Mat _img, std::string _address);
 	
 Mat imRGBtoGray(Mat _img);
 

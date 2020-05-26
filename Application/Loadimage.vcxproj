@@ -166,7 +166,9 @@
     <ClCompile Include="View-8.cpp" />
     <ClCompile Include="View-LoadImage.cpp" />
     <ClCompile Include="View-MenuImage.cpp" />
+    <ClCompile Include="View-ShowImage.cpp" />
     <ClCompile Include="View.cpp" />
+    <ClCompile Include="View-SaveImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -184,6 +186,8 @@
     <ClInclude Include="View-8.h" />
     <ClInclude Include="View-LoadImage.h" />
     <ClInclude Include="View-MenuImage.h" />
+    <ClInclude Include="View-SaveImage.h" />
+    <ClInclude Include="View-ShowImage.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
