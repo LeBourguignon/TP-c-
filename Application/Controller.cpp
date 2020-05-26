@@ -98,7 +98,7 @@ void Controller::dectContours(int _i)
 
 void Controller::opSeuils(int _Type, double _i)
 {
-    ghost = imRGBtoGray(ghost);
+    ghost = imRGBtoGray(img);
     ghost = opSeuil(ghost, _Type, _i);
 }
 
