@@ -94,8 +94,6 @@ void Controller::dectContours(int _i)
 {
     ghost = gradient(img);
     ghost = contours(ghost, _i);
-  //  ghost = gradient(ghost);
-  //  ghost = imRGBtoGray(ghost);
 }
 
 void Controller::opSeuils(int _Type, double _i)
@@ -104,7 +102,7 @@ void Controller::opSeuils(int _Type, double _i)
     ghost = opSeuil(ghost, _Type, _i);
 }
 
-void Controller::segementations()
+void Controller::segementations(bool _colors)
 {
-    ghost = segementation(img);
+    ghost = segementation(img, _colors);
 }

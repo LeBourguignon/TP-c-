@@ -25,24 +25,46 @@ void View8::notify()
  */
 void View8::display()
 {
-    controller.segementations();
-    controller.updateGhost("Segmentation par croissance de region");
-
-    clear();
-    View::display();
-
-    std::cout << "\tVoulez vous garder la modification ?" << std::endl;
-    std::cout << "\t\t1. Oui" << std::endl;
-    std::cout << "\t\t0. Non" << std::endl << std::endl;
-
-    int y;
-    std::cin.clear();
-    std::cin >> y;
-
-    if (y == 1)
+    int x = 0;
+    do
     {
-        controller.ghostToImg();
-    }
+        clear();
+        View::display();
 
-    controller.setScreen(0);
+        std::cout << "\tVoulez vous en noir et blanc ou en couleur ?" << std::endl;
+        std::cout << "\t\t1. Noir et blanc" << std::endl;
+        std::cout << "\t\t2. Couleur" << std::endl << std::endl;
+
+        std::cout << "\t-----------------------------------------------------------" << std::endl;
+        std::cout << "\t0. Retour" << std::endl;
+        std::cout << std::endl;
+
+        std::cin.clear();
+        std::cin >> x;
+
+        if (x == 1 || x == 2)
+        {
+            x--;
+            controller.segementations(x);
+            controller.updateGhost("Segmentation par croissance de region");
+
+            clear();
+            View::display();
+
+            std::cout << "\tVoulez vous garder la modification ?" << std::endl;
+            std::cout << "\t\t1. Oui" << std::endl;
+            std::cout << "\t\t0. Non" << std::endl << std::endl;
+
+            int y;
+            std::cin.clear();
+            std::cin >> y;
+
+            if (y == 1)
+            {
+                controller.ghostToImg();
+                x = 0;
+            }        
+        }
+    } while (x != 0);
+    controller.setScreen(x);
 }

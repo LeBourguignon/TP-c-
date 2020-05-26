@@ -56,5 +56,5 @@ public:
 
 	void opSeuils(int _type, double _i);
 
-	void segementations();
+	void segementations(bool _colors);
 };

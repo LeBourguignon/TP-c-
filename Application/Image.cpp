@@ -176,7 +176,7 @@ Mat opSeuil(Mat _img, int _type, double _i)
 
 //img en couleur ss changements
 
-Mat segementation(Mat _img,bool couleurs)
+Mat segementation(Mat _img,bool _colors)
 {
 	Mat src = _img;
 	// Créer un noyau que nous utiliserons pour affiner notre image
@@ -234,7 +234,7 @@ Mat segementation(Mat _img,bool couleurs)
 	{
 
 		int b, g, r;
-		if (couleurs) {
+		if (_colors) {
 			// Génère des couleurs aléatoires
 			b = theRNG().uniform(0, 256);
 			g = theRNG().uniform(0, 256);
