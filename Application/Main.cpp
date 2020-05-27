@@ -9,4 +9,5 @@ int main()
 
 /*
 	UML : https://app.lucidchart.com/publicSegments/view/45243c56-8d31-44b1-affd-81c7ba521131
+	GitHub : https://github.com/LeBourguignon/TP-c-
 */
